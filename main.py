@@ -17,7 +17,7 @@
 
 ###########################################################################################
 from enum import Enum
-from fastapi import Depends, FastAPI, HTTPException, Request, WebSocket
+from fastapi import Depends, FastAPI, HTTPException, Request, WebSocket,security
 from pydantic import BaseModel
 from database import engine,base,SessionLocal
 from sqlalchemy import Column,Integer,Boolean,String
@@ -38,7 +38,7 @@ class Userss(base):
     is_active = Column (Boolean,default=True) 
     
 # Connect model to database
-base.metadata.create_all(bind=engine)
+# base.metadata.create_all(bind=engine)
 
 
 # This function will be used for CRUD operation
