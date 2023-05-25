@@ -1,5 +1,5 @@
 from database import base
-from sqlalchemy import Column, ForeignKey,Integer,Boolean,String
+from sqlalchemy import Column, ForeignKey,Integer,Boolean,String,DateTime
 from datetime import datetime
 from sqlalchemy.orm import relationship
 import passlib.hash as _hash
@@ -19,7 +19,7 @@ class UserModel(base):
     phone = Column(String)
     email = Column(String,unique=True,index=True)
     password_hash = Column (String)
-    created_at = Column(datetime,default=datetime.utcnow())
+    created_at = Column(DateTime,default=datetime.utcnow())
     posts = relationship("post",back_populates='user')
 
     def password_verification(self,password:str):
@@ -31,7 +31,8 @@ class PostModel(base):
      user_id = Column (Integer,ForeignKey("users.id")) # A foreign key is a relational database concept that establishes a relationship between two tables. It is a column or a set of columns in one table that refers to the primary key of another table.
      post_title = Column(String,index=True)
      post_description = Column(String,index=True)
-     created_at = Column(datetime,default=datetime.utcnow())
+     image = Column (String)
+     created_at = Column(DateTime,default=datetime.utcnow())
      user = relationship("user",back_populates='posts')
 
     # user: This attribute represents the relationship from the "post" entity back to the "user" entity. It will be used to access the user associated with a particular post.

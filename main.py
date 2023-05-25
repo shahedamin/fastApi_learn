@@ -25,6 +25,7 @@ from sqlalchemy.orm import Session
 from fastapi.templating import Jinja2Templates
 from models import User2
 from fastapi.responses import JSONResponse
+from services import get_db
 # Why use ORM(sqlalchemy)- It handles tasks like data validation, serialization, and querying the database using an object-oriented API.
 #  In synchronous programming, tasks are executed one after another in a sequential manner. In asynchronous programming, tasks can start executing without waiting for the completion of previous tasks
 
@@ -42,12 +43,12 @@ class Userss(base):
 
 
 # This function will be used for CRUD operation
-def get_db():
-    db=SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close()
+# def get_db():
+#     db=SessionLocal()
+#     try:
+#         yield db
+#     finally:
+#         db.close()
 
 
 # This is schema.
