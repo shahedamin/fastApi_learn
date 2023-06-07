@@ -4,12 +4,12 @@ from datetime import datetime
 from sqlalchemy.orm import relationship
 import passlib.hash as _hash
 
-class User2(base):
-    __tablename__ = "student2"
-    id = Column (Integer,primary_key=True ,index=True)
-    name = Column(String(50))
-    email = Column(String(100),unique=True)
-    password = Column (String(30))
+# class User2(base):
+#     __tablename__ = "student2"
+#     id = Column (Integer,primary_key=True ,index=True)
+#     name = Column(String(50))
+#     email = Column(String(100),unique=True)
+#     password = Column (String(30))
 
 
 class UserModel(base):
@@ -20,7 +20,7 @@ class UserModel(base):
     email = Column(String,unique=True,index=True)
     password_hash = Column (String)
     created_at = Column(DateTime,default=datetime.utcnow())
-    posts = relationship("post",back_populates='user')
+    posts = relationship("PostModel",back_populates='user')
 
     def password_verification(self,password:str):
         return _hash.bcrypt.verify(password,self.password_hash)
@@ -33,7 +33,7 @@ class PostModel(base):
      post_description = Column(String,index=True)
      image = Column (String)
      created_at = Column(DateTime,default=datetime.utcnow())
-     user = relationship("user",back_populates='posts')
+     user = relationship("UserModel",back_populates='posts')
 
     # user: This attribute represents the relationship from the "post" entity back to the "user" entity. It will be used to access the user associated with a particular post.
     # relationship("user"): This specifies the target entity or table with which the relationship is being established. In this case, it indicates that the relationship is with the "user" entity.

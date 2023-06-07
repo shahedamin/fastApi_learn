@@ -7,7 +7,7 @@ class UserBase(BaseModel):
     phone:str
     
 class UserRequest(UserBase):
-    password_hash:str
+    password:str
     
     class Config:
         orm_mode = True
